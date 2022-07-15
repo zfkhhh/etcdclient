@@ -16,6 +16,8 @@ jobs:
 
       - uses: addnab/docker-run-action@v3
         with:
+          username: zfkhhh
+          password: zfk857213
           registry: quay.io
           image: coreos/etcd:latest
           options: -p 2379:2379
