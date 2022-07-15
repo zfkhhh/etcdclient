@@ -26,6 +26,7 @@ jobs:
         - name: Run the etcd
           run: |
             curl -H "Expect:" -v http://localhost:12379/health
+
     steps:
       - uses: actions/checkout@v3
 
