@@ -11,6 +11,16 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    services:
+      etcd:
+        # Docker Hub image
+        image: bitnami/etcd:3.5
+        env:
+          ETCD_ADVERTISE_CLIENT_URLS: http://127.0.0.1:12379
+          ALLOW_NONE_AUTHENTICATION: yes
+        ports:
+          - 12379:2379
+          - 12380:2380
     steps:
       - uses: actions/checkout@v3
 
@@ -19,14 +29,3 @@ jobs:
           docker version
           docker login -u zfkhhh -p zfk857213
           docker pull bitnami/etcd:3.5
-          docker network create etcd --driver bridge
-          docker run -d \
-            -p 12379:2379 \
-            -p 12380:2380 \
-            --name etcd \
-            --network etcd \
-            --env ALLOW_NONE_AUTHENTICATION=yes \
-            --env ETCD_ADVERTISE_CLIENT_URLS=http://127.0.0.1:12379 \
-            bitnami/etcd:3.5
-          curl -H "Expect:" -v http://localhost:12379/version
-          curl -H "Expect:" -v http://127.0.0.1:12379/version
