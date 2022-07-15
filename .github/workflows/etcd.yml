@@ -21,7 +21,7 @@ jobs:
           docker pull quay.io/coreos/etcd:latest
           docker network create etcd --driver bridge
           docker run -d --name etcd-server \
-              --network app-tier \
+              --network etcd \
               --publish 2379:2379 \
               --publish 2380:2380 \
               --env ALLOW_NONE_AUTHENTICATION=yes \
