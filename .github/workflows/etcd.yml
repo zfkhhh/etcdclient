@@ -18,6 +18,5 @@ jobs:
         with:
           username: zfkhhh
           password: zfk857213
-          registry: quay.io
-          image: coreos/etcd:latest
+          image: quay.io/coreos/etcd:latest
           options: -p 2379:2379
