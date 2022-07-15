@@ -10,6 +10,22 @@ jobs:
 
   build:
     runs-on: ubuntu-latest
+    services:
+      etcd:
+        # Docker Hub image
+        image: bitnami/etcd:3.5
+        env:
+          ETCD_ADVERTISE_CLIENT_URLS: http://127.0.0.1:12379
+          ALLOW_NONE_AUTHENTICATION: yes
+        ports:
+          - 12379:2379
+          - 12380:2380
+      steps:
+        - uses: actions/checkout@v3
+
+        - name: Run the etcd
+          run: |
+            curl -H "Expect:" -v http://localhost:12379/health
     steps:
       - uses: actions/checkout@v3
 
