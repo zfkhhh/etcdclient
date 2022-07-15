@@ -27,4 +27,4 @@ jobs:
               --env ALLOW_NONE_AUTHENTICATION=yes \
               --env ETCD_ADVERTISE_CLIENT_URLS=http://127.0.0.1:2379 \
               quay.io/coreos/etcd:latest
-          curl http://127.0.0.1:2379/version
+          echo `curl http://127.0.0.1:2379/version`
