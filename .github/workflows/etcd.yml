@@ -18,13 +18,15 @@ jobs:
         run: |
           docker version
           docker login -u zfkhhh -p zfk857213
-          docker pull quay.io/coreos/etcd:latest
+          docker pull bitnami/etcd:3.5
           docker network create etcd --driver bridge
-          docker run -d --name etcd-server \
-              --network etcd \
-              --publish 2379:2379 \
-              --publish 2380:2380 \
-              --env ALLOW_NONE_AUTHENTICATION=yes \
-              --env ETCD_ADVERTISE_CLIENT_URLS=http://127.0.0.1:2379 \
-              quay.io/coreos/etcd:latest
-          echo `curl http://127.0.0.1:2379/version`
+
+          docker run \
+            -p 12379:2379 \
+            -p 12380:2380 \
+            --name etcd \
+            --network app-tier \
+            --env ALLOW_NONE_AUTHENTICATION=yes \
+            --env ETCD_ADVERTISE_CLIENT_URLS=http://127.0.0.1:12379 \
+            bitnami/etcd:3.5
+          echo `curl http://127.0.0.1:12379/version`
