@@ -28,4 +28,7 @@ jobs:
             --env ALLOW_NONE_AUTHENTICATION=yes \
             --env ETCD_ADVERTISE_CLIENT_URLS=http://127.0.0.1:12379 \
             bitnami/etcd:3.5
-          curl -H "Expect:" http://127.0.0.1:12379/version
+          telnet -anp | grep 12379
+          ipconfig
+          curl -H "Expect:" -v http://localhost:12379/version
+          curl -H "Expect:" -v http://127.0.0.1:12379/version
