@@ -14,10 +14,17 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - uses: addnab/docker-run-action@v3
-        with:
-          username: zfkhhh
-          password: zfk857213
-          image: quay.io/coreos/etcd:latest
-          options: -p 2379:2379
-          run: echo `curl http://127.0.0.1:2379/version`
+      - name: Run the etcd
+        run: |
+          docker version
+          docker login -u zfkhhh -p zfk857213
+          docker pull quay.io/coreos/etcd:latest
+          docker network create etcd --driver bridge
+          docker run -d --name etcd-server \
+              --network app-tier \
+              --publish 2379:2379 \
+              --publish 2380:2380 \
+              --env ALLOW_NONE_AUTHENTICATION=yes \
+              --env ETCD_ADVERTISE_CLIENT_URLS=http://127.0.0.1:2379 \
+              quay.io/coreos/etcd:latest
+          curl http://127.0.0.1:2379/version
