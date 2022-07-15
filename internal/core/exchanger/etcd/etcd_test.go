@@ -18,16 +18,20 @@
 package etcd
 
 import (
-	"flag"
+	"encoding/json"
 	"github.com/acmestack/envcd/internal/envcd"
 	"github.com/acmestack/envcd/internal/pkg/config"
+	"log"
 	"testing"
 )
 
 func TestNew(t *testing.T) {
-	configFile := flag.String("config", "../../../../config/envcd.yaml", "envcd -config config/envcd.yaml")
-	flag.Parse()
-	envcd.Start(config.NewConfig(configFile))
+	str := "{\"exchanger\": \"etcd://:@localhost:12379\"}"
+	envcdConfig := &config.Config{}
+	if e := json.Unmarshal([]byte(str), envcdConfig); e != nil {
+		log.Fatalf("error %v", e)
+	}
+	envcd.Start(envcdConfig)
 	tests := []struct {
 		name string
 		want *Etcd
@@ -46,9 +50,12 @@ func TestNew(t *testing.T) {
 }
 
 func TestEtcd_Get(t *testing.T) {
-	configFile := flag.String("config", "../../../../config/envcd.yaml", "envcd -config config/envcd.yaml")
-	flag.Parse()
-	envcd.Start(config.NewConfig(configFile))
+	str := "{\"exchanger\": \"etcd://:@localhost:12379\"}"
+	envcdConfig := &config.Config{}
+	if e := json.Unmarshal([]byte(str), envcdConfig); e != nil {
+		log.Fatalf("error %v", e)
+	}
+	envcd.Start(envcdConfig)
 	tests := []struct {
 		name string
 		want *Etcd
@@ -72,9 +79,12 @@ func TestEtcd_Get(t *testing.T) {
 }
 
 func TestEtcd_Put(t *testing.T) {
-	configFile := flag.String("config", "../../../../config/envcd.yaml", "envcd -config config/envcd.yaml")
-	flag.Parse()
-	envcd.Start(config.NewConfig(configFile))
+	str := "{\"exchanger\": \"etcd://:@localhost:12379\"}"
+	envcdConfig := &config.Config{}
+	if e := json.Unmarshal([]byte(str), envcdConfig); e != nil {
+		log.Fatalf("error %v", e)
+	}
+	envcd.Start(envcdConfig)
 	tests := []struct {
 		name string
 		want *Etcd
@@ -99,9 +109,12 @@ func TestEtcd_Put(t *testing.T) {
 }
 
 func TestEtcd_Find(t *testing.T) {
-	configFile := flag.String("config", "../../../../config/envcd.yaml", "envcd -config config/envcd.yaml")
-	flag.Parse()
-	envcd.Start(config.NewConfig(configFile))
+	str := "{\"exchanger\": \"etcd://:@localhost:12379\"}"
+	envcdConfig := &config.Config{}
+	if e := json.Unmarshal([]byte(str), envcdConfig); e != nil {
+		log.Fatalf("error %v", e)
+	}
+	envcd.Start(envcdConfig)
 	tests := []struct {
 		name string
 		want *Etcd
@@ -125,9 +138,12 @@ func TestEtcd_Find(t *testing.T) {
 }
 
 func TestEtcd_Remove(t *testing.T) {
-	configFile := flag.String("config", "../../../../config/envcd.yaml", "envcd -config config/envcd.yaml")
-	flag.Parse()
-	envcd.Start(config.NewConfig(configFile))
+	str := "{\"exchanger\": \"etcd://:@localhost:12379\"}"
+	envcdConfig := &config.Config{}
+	if e := json.Unmarshal([]byte(str), envcdConfig); e != nil {
+		log.Fatalf("error %v", e)
+	}
+	envcd.Start(envcdConfig)
 	tests := []struct {
 		name string
 		want *Etcd
