@@ -20,8 +20,7 @@ jobs:
           docker login -u zfkhhh -p zfk857213
           docker pull bitnami/etcd:3.5
           docker network create etcd --driver bridge
-
-          docker run \
+          docker run -d \
             -p 12379:2379 \
             -p 12380:2380 \
             --name etcd \
