@@ -20,12 +20,6 @@ jobs:
         ports:
           - 12379:2379
           - 12380:2380
-      steps:
-        - uses: actions/checkout@v3
-
-        - name: Run the etcd
-          run: |
-            curl -H "Expect:" -v http://localhost:12379/health
 
     steps:
       - uses: actions/checkout@v3
