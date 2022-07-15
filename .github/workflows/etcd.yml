@@ -20,3 +20,4 @@ jobs:
           password: zfk857213
           image: quay.io/coreos/etcd:latest
           options: -p 2379:2379
+          run: echo `curl http://127.0.0.1:2379/version`
