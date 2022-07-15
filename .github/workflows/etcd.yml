@@ -1,0 +1,21 @@
+name: etcd
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches:
+      - main
+      - feature-etcdclient
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+  test:
+    needs: [build]
+    container: golang:1.18
+    services:
+      etcd:
+        image: k8s.gcr.io/etcd:3.5.0-0
+        ports:
+          - 2379:2379
