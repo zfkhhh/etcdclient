@@ -21,10 +21,11 @@ import (
 	"flag"
 	"github.com/acmestack/envcd/internal/envcd"
 	"github.com/acmestack/envcd/internal/pkg/config"
+	"log"
 	"testing"
 )
 
-/*func TestNew(t *testing.T) {
+func TestNew(t *testing.T) {
 	configFile := flag.String("config", "../../../../config/envcd.yaml", "envcd -config config/envcd.yaml")
 	flag.Parse()
 	envcd.Start(config.NewConfig(configFile))
@@ -44,12 +45,10 @@ import (
 			}
 		})
 	}
-}*/
+}
 
 func TestEtcd_Put(t *testing.T) {
-	configFile := flag.String("config", "../../../../config/envcd.yaml", "envcd -config config/envcd.yaml")
-	flag.Parse()
-	envcd.Start(config.NewConfig(configFile))
+
 	tests := []struct {
 		name string
 		want *Etcd
@@ -77,9 +76,7 @@ func TestEtcd_Put(t *testing.T) {
 
 
 func TestEtcd_Find(t *testing.T) {
-	configFile := flag.String("config", "../../../../config/envcd.yaml", "envcd -config config/envcd.yaml")
-	flag.Parse()
-	envcd.Start(config.NewConfig(configFile))
+
 	tests := []struct {
 		name string
 		want *Etcd
@@ -103,9 +100,7 @@ func TestEtcd_Find(t *testing.T) {
 }
 
 func TestEtcd_Get(t *testing.T) {
-	configFile := flag.String("config", "../../../../config/envcd.yaml", "envcd -config config/envcd.yaml")
-	flag.Parse()
-	envcd.Start(config.NewConfig(configFile))
+
 	tests := []struct {
 		name string
 		want *Etcd
@@ -130,9 +125,7 @@ func TestEtcd_Get(t *testing.T) {
 
 
 func TestEtcd_Remove(t *testing.T) {
-	configFile := flag.String("config", "../../../../config/envcd.yaml", "envcd -config config/envcd.yaml")
-	flag.Parse()
-	envcd.Start(config.NewConfig(configFile))
+
 	tests := []struct {
 		name string
 		want *Etcd
