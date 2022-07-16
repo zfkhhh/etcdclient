@@ -15,11 +15,16 @@ jobs:
         # Docker Hub image
         image: bitnami/etcd:3.5
         env:
-          ETCD_ADVERTISE_CLIENT_URLS: http://127.0.0.1:12379
+          ETCD_ADVERTISE_CLIENT_URLS: http://127.0.0.1:2379
           ALLOW_NONE_AUTHENTICATION: yes
+        options: >-
+          --health-cmd "etcdctl ping"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
         ports:
-          - 12379:2379
-          - 12380:2380
+          - 2379:2379
+          - 2380:2380
 
     steps:
       - uses: actions/checkout@v3
