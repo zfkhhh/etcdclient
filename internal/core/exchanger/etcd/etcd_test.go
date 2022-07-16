@@ -21,11 +21,13 @@ import (
 	"flag"
 	"github.com/acmestack/envcd/internal/envcd"
 	"github.com/acmestack/envcd/internal/pkg/config"
-	"log"
 	"testing"
 )
 
-func TestNew(t *testing.T) {
+/*func TestNew(t *testing.T) {
+	configFile := flag.String("config", "../../../../config/envcd.yaml", "envcd -config config/envcd.yaml")
+	flag.Parse()
+	envcd.Start(config.NewConfig(configFile))
 	log.Printf("config = %v",envcd.EnvcdConfig.ExchangerConnMetadata)
 	tests := []struct {
 		name string
@@ -42,7 +44,7 @@ func TestNew(t *testing.T) {
 			}
 		})
 	}
-}
+}*/
 
 func TestEtcd_Get(t *testing.T) {
 	configFile := flag.String("config", "../../../../config/envcd.yaml", "envcd -config config/envcd.yaml")
