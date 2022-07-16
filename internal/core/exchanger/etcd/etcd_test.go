@@ -21,34 +21,15 @@ import (
 	"flag"
 	"github.com/acmestack/envcd/internal/envcd"
 	"github.com/acmestack/envcd/internal/pkg/config"
-	"log"
 	"testing"
 )
 
-func TestNew(t *testing.T) {
+
+
+func TestEtcd_Put(t *testing.T) {
 	configFile := flag.String("config", "../../../../config/envcd.yaml", "envcd -config config/envcd.yaml")
 	flag.Parse()
 	envcd.Start(config.NewConfig(configFile))
-	log.Printf("config = %v",envcd.EnvcdConfig.ExchangerConnMetadata)
-	tests := []struct {
-		name string
-		want *Etcd
-	}{
-		{
-			want: New(),
-		},
-	}
-	for _, tt := range tests {
-		t.Run(tt.name, func(t *testing.T) {
-			if tt.want == nil || tt.want.client == nil {
-				t.Errorf("failed to create client, want %v", tt.want)
-			}
-		})
-	}
-}
-
-func TestEtcd_Put(t *testing.T) {
-
 	tests := []struct {
 		name string
 		want *Etcd
