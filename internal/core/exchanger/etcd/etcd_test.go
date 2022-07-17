@@ -24,12 +24,30 @@ import (
 	"testing"
 )
 
-
-
-func TestEtcd_Put(t *testing.T) {
+func TestNew(t *testing.T) {
 	configFile := flag.String("config", "../../../../config/envcd.yaml", "envcd -config config/envcd.yaml")
 	flag.Parse()
 	envcd.Start(config.NewConfig(configFile))
+
+	tests := []struct {
+		name string
+		want *Etcd
+	}{
+		{
+			want: New(),
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			if tt.want == nil || tt.want.client == nil {
+				t.Errorf("failed to create client, want %v", tt.want)
+			}
+		})
+	}
+}
+
+func TestEtcd_Put(t *testing.T) {
+
 	tests := []struct {
 		name string
 		want *Etcd

@@ -31,6 +31,7 @@ func TestNew(t *testing.T) {
 		want *Exchanger
 	}{
 		{
+			name: "NewEtcdClient",
 			want: New(),
 		},
 	}
