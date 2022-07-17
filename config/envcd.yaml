@@ -1,0 +1,3 @@
+exchanger: "etcd://:@localhost:2379"
+mysql:
+  url: "mysql://user:password@localhost:3306"
